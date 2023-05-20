@@ -1,20 +1,23 @@
 'use strict';
 
 import { APIGatewayEvent, APIGatewayProxyHandler } from 'aws-lambda';
+import { getCharacters } from '../services/starwars';
+import { internalError, notFound, success } from '../utils/rest';
+import { translateKeysOfCharacter } from '../utils/translate';
+import { REST } from '../config/constants';
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
-
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
+  console.log('EVENT :', JSON.stringify(event, null, 2));
+  try {
+    const { page, search } = event.queryStringParameters || {};
+    const characters = await getCharacters(page, search);
+    if (characters.length === 0) return notFound();
+    const personajes = characters.map((character) => {
+      return translateKeysOfCharacter(character);
+    });
+    return success(personajes);
+  } catch (error: any) {
+    if (error.message === REST.NOT_FOUND) return notFound();
+    return internalError();
+  }
 };

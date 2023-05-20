@@ -1,7 +1,7 @@
 export default interface Personaje {
   nombre: string;
-  altura: number;
-  masa: number;
+  altura: string;
+  masa: string;
   colorCabello: string;
   colorPiel: string;
   colorOjos: string;
