@@ -1,6 +1,6 @@
 import { REST, STATUS_CODE } from '../config/constants';
 
-const response = (statusCode: number, message: string, result?: any) => {
+export const response = (statusCode: number, message: string, result?: any) => {
   const body = {
     message,
     result,
