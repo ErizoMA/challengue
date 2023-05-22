@@ -2,7 +2,6 @@
 
 import { APIGatewayEvent, APIGatewayProxyHandler } from 'aws-lambda';
 import { internalError, notFound, success } from '../utils/rest';
-import { REST } from '../config/constants';
 import CharacterRepository from '../repositories/character.repository';
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) => {

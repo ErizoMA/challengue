@@ -5,6 +5,23 @@ get-characters:
     - http:
         path: /characters
         method: get
+        responseData:
+          200:
+            description: Success
+            bodyType: ResponseList
+          404:
+            description: Not found
+            bodyType: ErrorNotFound
+          500:
+            description: Internal Error
+            bodyType: ErrorInternal
+        queryStringParameters:
+          search:
+            type: string
+            description: Name of the character
+          page:
+            type: integer
+            description: Page number
 get-character:
   description: GET character
   handler: src/api/get-character.handler
@@ -12,6 +29,19 @@ get-character:
     - http:
         path: /characters/{id}
         method: get
+        responseData:
+          200:
+            description: Success
+            bodyType: Response
+          400:
+            description: Bad request
+            bodyType: ErrorBadRequest
+          404:
+            description: Not found
+            bodyType: ErrorNotFound
+          500:
+            description: Internal Error
+            bodyType: ErrorInternal
 post-character: 
   description: POST character
   handler: src/api/post-character.handler
@@ -19,6 +49,17 @@ post-character:
     - http:
         path: /characters
         method: post
+        bodyType: Request
+        responseData:
+          201:
+            description: Created
+            bodyType: ResponseCreated
+          409:
+            description: Already created
+            bodyType: ErrorConflict
+          500:
+            description: Internal Error
+            bodyType: ErrorInternal
 get-characters-db:
   description: GET characters from DB
   handler: src/api/get-characters-db.handler
@@ -26,3 +67,13 @@ get-characters-db:
     - http:
         path: /charactersdb
         method: get
+        responseData:
+          200:
+            description: Success
+            bodyType: ResponseList
+          404:
+            description: Not found
+            bodyType: ErrorNotFound
+          500:
+            description: Internal Error
+            bodyType: ErrorInternal

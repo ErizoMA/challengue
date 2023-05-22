@@ -3,10 +3,11 @@ service: challengue
 frameworkVersion: '3'
 
 plugins:
+  - serverless-auto-swagger
   - serverless-offline
+  - serverless-esbuild
   - serverless-stage-manager
   - serverless-deployment-bucket
-  - serverless-esbuild
 
 custom:
   base: ${self:service}-${self:provider.stage}
@@ -21,6 +22,11 @@ custom:
     - prod
   #TABLE NAME
   tableName: ${self:custom.base}-characters
+  #DOCUMENTATION
+  autoswagger:
+    typefiles: ['./src/types/response.d.ts','./src/types/error.d.ts','./src/types/request.d.ts']
+    basePath: /${self:provider.stage}
+
 
 provider:
   name: aws
