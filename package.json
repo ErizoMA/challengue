@@ -4,9 +4,10 @@
   "description": "",
   "scripts": {
     "dev": "sls offline start",
-    "deploy": "sls deploy",
+    "deploy": "npm run test && sls deploy",
     "deploy-dev": "sls deploy --stage develop --aws-profile ubuntu",
-    "test": "jest"
+    "test": "jest",
+    "remove":"sls remove"
   },
   "repository": {
     "type": "git",

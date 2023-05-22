@@ -14,6 +14,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayEvent) =>
     if (personajes.length === 0) return notFound();
     return success(personajes);
   } catch (error: any) {
+    console.log(error);
     if (error.message === REST.NOT_FOUND) return notFound();
     return internalError();
   }

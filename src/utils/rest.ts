@@ -29,7 +29,6 @@ export const badRequest = () => {
 export const created = () => {
   return response(STATUS_CODE.CREATED, REST.CREATED);
 };
-
 export const conflict = () => {
   return response(STATUS_CODE.CONFLICT, REST.CONFLICT);
 };

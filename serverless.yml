@@ -26,6 +26,7 @@ custom:
   autoswagger:
     typefiles: ['./src/types/response.d.ts','./src/types/error.d.ts','./src/types/request.d.ts']
     basePath: /${self:provider.stage}
+    apiType: http
 
 
 provider:
