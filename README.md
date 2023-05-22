@@ -1,4 +1,14 @@
 # Challengue
+## Four APIs were genereted:
+
+**GET** `/characters`: Get characters from SWAPI api, accepts queryStrings: search and page.
+
+**GET** `/characters/:id`: Get a single character from SWAPI api.
+
+**GET** `/charactersdb`: Retrieve list of characters from DynamoDB.
+
+**POST** `/characters`: Create a character in DynamoDB.
+
 
 ## Plugins
 ```yaml
