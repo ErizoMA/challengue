@@ -1,0 +1,28 @@
+get-characters:
+  description: GET characters
+  handler: src/api/get-characters.handler
+  events:
+    - http:
+        path: /characters
+        method: get
+get-character:
+  description: GET character
+  handler: src/api/get-character.handler
+  events:
+    - http:
+        path: /characters/{id}
+        method: get
+post-character: 
+  description: POST character
+  handler: src/api/post-character.handler
+  events:
+    - http:
+        path: /characters
+        method: post
+get-characters-db:
+  description: GET characters from DB
+  handler: src/api/get-characters-db.handler
+  events:
+    - http:
+        path: /charactersdb
+        method: get
