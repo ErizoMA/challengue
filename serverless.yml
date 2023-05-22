@@ -34,7 +34,7 @@ provider:
   runtime: nodejs14.x
   stage: ${opt:stage, 'develop'}
   region: ${opt:region, 'us-east-1'}
-  timeout: 15
+  timeout: 30
   deploymentBucket:
     name: ${self:custom.base}
     serverSideEncryption: AES256

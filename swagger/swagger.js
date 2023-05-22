@@ -82,6 +82,12 @@
               "$ref": "#/definitions/ResponseCreated"
             }
           },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorBadRequest"
+            }
+          },
           "409": {
             "description": "Already created",
             "schema": {
