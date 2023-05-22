@@ -49,6 +49,7 @@ post-character:
     - http:
         path: /characters
         method: post
+        cors: true
         bodyType: Request
         responseData:
           201:
