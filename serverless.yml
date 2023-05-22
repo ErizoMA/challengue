@@ -19,6 +19,7 @@ custom:
     - develop
     - staging
     - prod
+  tableName: ${self:custom.base}-characters
 
 provider:
   name: aws
@@ -29,6 +30,20 @@ provider:
   deploymentBucket:
     name: ${self:custom.base}
     serverSideEncryption: AES256
+  environment:
+    TABLE_NAME: ${self:custom.tableName}
+  iamRoleStatements:
+    - Effect: Allow
+      Action: # Gives permission to DynamoDB tables in a specific region
+        - dynamodb:Query
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:BatchGetItem
+        - dynamodb:DeleteItem
+      Resource:
+        - arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:custom.tableName}
+        - arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:custom.tableName}/index/*
 
 functions:
   get-characters:
@@ -52,21 +67,28 @@ functions:
       - http:
           path: /characters
           method: post
+  get-characters-db:
+    description: GET characters from DB
+    handler: src/api/get-characters-db.handler
+    events:
+      - http:
+          path: /charactersdb
+          method: get
 
-# resources:
-#   Resources:
-#     StarWarsBD:
-#       Type: AWS::DynamoDB::Table
-#       Properties:
-#         TableName: ${self:custom.base}
-#         AttributeDefinitions:
-#           - AttributeName: PK
-#             AttributeType: S
-#           - AttributeName: SK
-#             AttributeType: S
-#         KeySchema:
-#           - AttributeName: PK
-#             KeyType: HASH
-#           - AttributeName: SK
-#             KeyType: RANGE
-#         BillingMode: PAY_PER_REQUEST
+resources:
+  Resources:
+    StarWarsBD:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: PK
+            AttributeType: S
+          - AttributeName: SK
+            AttributeType: S
+        KeySchema:
+          - AttributeName: PK
+            KeyType: HASH
+          - AttributeName: SK
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST

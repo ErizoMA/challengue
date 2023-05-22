@@ -5,6 +5,8 @@ export const REST = {
   INTERNAL: 'INTERNAL_ERROR',
   NOT_FOUND: 'NOT_FOUND',
   BAD_REQUEST: 'BAD_REQUEST',
+  CREATED: 'CREATED',
+  CONFLICT: 'CONFLICT',
 };
 
 export const STATUS_CODE = {
@@ -12,4 +14,8 @@ export const STATUS_CODE = {
   INTERNAL: 500,
   NOT_FOUND: 404,
   BAD_REQUEST: 400,
+  CREATED: 201,
+  CONFLICT: 409,
 };
+
+export const CHARACTER_ENTITY = 'PERSONAJE';

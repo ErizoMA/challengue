@@ -26,3 +26,10 @@ export const notFound = () => {
 export const badRequest = () => {
   return response(STATUS_CODE.BAD_REQUEST, REST.BAD_REQUEST);
 };
+export const created = () => {
+  return response(STATUS_CODE.CREATED, REST.CREATED);
+};
+
+export const conflict = () => {
+  return response(STATUS_CODE.CONFLICT, REST.CONFLICT);
+};
