@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "sls offline start",
-    "deploy": "npm run test && sls deploy",
-    "deploy-dev": "sls deploy --stage develop --aws-profile ubuntu",
+    "dev": "serverless offline start",
+    "deploy": "npm run test && serverless deploy",
+    "deploy-dev": "serverless deploy --stage develop --aws-profile ubuntu",
     "test": "jest",
-    "remove":"sls remove"
+    "remove":"serverless remove"
   },
   "repository": {
     "type": "git",

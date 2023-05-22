@@ -54,6 +54,9 @@ post-character:
           201:
             description: Created
             bodyType: ResponseCreated
+          400:
+            description: Bad request
+            bodyType: ErrorBadRequest
           409:
             description: Already created
             bodyType: ErrorConflict
